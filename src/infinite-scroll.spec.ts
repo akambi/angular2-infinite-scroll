@@ -74,7 +74,7 @@ describe('Infinite Scroll Directive', () => {
       totalToScroll: 0,
     }
     spyOn(directive, 'onScrollDown');
-    directive.ngOnInit();
+    directive.ngAfterViewInit();
     directive.handleOnScroll(container)
     const actual = directive.onScrollDown;
     expect(actual).toHaveBeenCalled();
@@ -88,7 +88,7 @@ describe('Infinite Scroll Directive', () => {
       totalToScroll: 0,
     };
     spyOn(directive, 'onScrollUp');
-    directive.ngOnInit();
+    directive.ngAfterViewInit();
     isScrollingDown = false;
     directive.handleOnScroll(container);
     const actual = directive.onScrollUp;
@@ -103,7 +103,7 @@ describe('Infinite Scroll Directive', () => {
       totalToScroll: 0,
     }
     spyOn(directive, 'onScrollDown');
-    directive.ngOnInit();
+    directive.ngAfterViewInit();
     directive._disabled = true;
     directive.handleOnScroll(container);
     const actual = directive.onScrollDown;
@@ -130,7 +130,7 @@ describe('Infinite Scroll Directive', () => {
         beforeEach(() => {
           spyOn(document, 'querySelector').and.returnValue(container);
           directive._container = '.test';
-          directive.ngOnInit();
+          directive.ngAfterViewInit();
         });
 
         it('should find element in DOM', () => {
@@ -146,7 +146,7 @@ describe('Infinite Scroll Directive', () => {
       describe('when container is passed directly', () => {
         beforeEach(() => {
           directive._container = container;
-          directive.ngOnInit();
+          directive.ngAfterViewInit();
         });
 
         it('should return container', () => {
@@ -160,7 +160,7 @@ describe('Infinite Scroll Directive', () => {
       describe('when scrollWindow is true', () => {
         beforeEach(() => {
           directive.scrollWindow = true;
-          directive.ngOnInit();
+          directive.ngAfterViewInit();
         });
 
         it('should return window', () => {
@@ -172,7 +172,7 @@ describe('Infinite Scroll Directive', () => {
       describe('when scrollWindow is false', () => {
         beforeEach(() => {
           directive.scrollWindow = false;
-          directive.ngOnInit();
+          directive.ngAfterViewInit();
         });
 
         it('should return current element', () => {
