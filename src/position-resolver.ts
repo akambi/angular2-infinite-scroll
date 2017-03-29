@@ -66,13 +66,14 @@ export class PositionResolver {
     const container = this.container;
 
     const height = this.height(container);
-    // perhaps use this.container.offsetTop instead of 'scrollTop'
-    const scrolledUntilNow = container[scrollTop];
+    // Now use this.container.offsetTop instead of 'scrollTop'
+    // const scrolledUntilNow = container[scrollTop];
     let containerTopOffset = 0;
     const offsetTop = this.offsetTop(container);
     if (offsetTop !== void 0) {
-      containerTopOffset = offsetTop;
+      containerTopOffset = offsetTop * (-1);
     }
+    const scrolledUntilNow = containerTopOffset;
     const totalToScroll = container[scrollHeight];
     return { height, scrolledUntilNow, totalToScroll };
   }

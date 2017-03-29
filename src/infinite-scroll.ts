@@ -1,7 +1,7 @@
 import { InfiniteScrollEvent, ScrollStats, PositionStats } from './models';
 import {
   Directive, ElementRef, Input, Output,
-  EventEmitter, OnDestroy, OnInit,
+  EventEmitter, OnDestroy, AfterViewInit,
   SimpleChanges, NgZone
 } from '@angular/core';
 import { PositionResolverFactory } from './position-resolver';
@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs/Rx';
 @Directive({
   selector: '[infinite-scroll]'
 })
-export class InfiniteScroll implements OnDestroy, OnInit {
+export class InfiniteScroll implements OnDestroy, AfterViewInit {
   @Output() scrolled = new EventEmitter<InfiniteScrollEvent>();
   @Output() scrolledUp = new EventEmitter<InfiniteScrollEvent>();
 
@@ -42,7 +42,7 @@ export class InfiniteScroll implements OnDestroy, OnInit {
     private scrollerResolver: ScrollResolver
   ) {}
 
-  ngOnInit() {
+  ngAfterViewInit() {
     if (typeof window !== 'undefined') {
       const containerElement = this.resolveContainerElement();
       const positionResolver = this.positionResolverFactory.create({
